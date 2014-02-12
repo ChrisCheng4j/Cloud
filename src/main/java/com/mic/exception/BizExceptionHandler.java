@@ -21,8 +21,8 @@ public class BizExceptionHandler implements HandlerExceptionResolver {
 			
 			BizException bizException = (BizException) exception;
 			
-			modelAndView.addObject("code", exception.getMessage());
-			modelAndView.addObject("desc", bizException.getDesc());
+			modelAndView.addObject("errCode", bizException.getErrCode());
+			modelAndView.addObject("message", bizException.getMessage());
 		}
 		
 		return modelAndView;
