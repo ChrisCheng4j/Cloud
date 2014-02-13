@@ -6,11 +6,11 @@ public interface BaseDao<T,PK> {
 	
 	public HibernateTemplate getHibernateTemplate();
 	
-	PK save(T t);
+	PK save(T entity);
 	
-	void update(T t);
+	void update(T entity);
 	
-	void delete(T t);
+	void delete(T entity);
 	
 	T get(PK id);
 }

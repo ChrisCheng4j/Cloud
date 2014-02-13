@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mic.service.UserRegisterService;
 
 @Controller
-public class RegisterController {
+public class UserRegisterController {
 	
 	@Resource
 	private UserRegisterService userRegisterService;

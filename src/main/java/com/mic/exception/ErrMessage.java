@@ -10,4 +10,7 @@ public interface ErrMessage {
 	
 	public final String INVALID_PHONENUM_CODE = "003";
 	public final String INVALID_PHONENUM = "Invalid Phone Number";
+	
+	public final String Repeated_Registration_CODE = "101";
+	public final String Repeated_Registration = "Repeated Registration";
 }

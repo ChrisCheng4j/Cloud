@@ -14,22 +14,20 @@ import com.mic.model.UserInfo;
 @Repository
 public class UserInfoDaoImpl extends BaseDaoImpl<UserInfo, Long> implements UserInfoDao {
 
- 	public int getUserInfo(final String name, final String email, final String tel) {
+ 	public int getUserInfoNum(final String name, final String email, final String tel) {
 		
-		final String sql = "select count(*) from userinfo where Name=? or Email=? or Tel=?";
+		final String sql = "from UserInfo where Name=? or Email=? or Tel=?";
 		
-		getHibernateTemplate().execute(new HibernateCallback<Object>() {
+		return  (Integer) getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 
 				Query query = session.createQuery(sql);
 				query.setString(0, name).setString(1, email).setString(2, tel);
 				
-				return query.executeUpdate();
+				return query.list().size();
 			}	
 		});
-		
-		return 0;
 	}
 
 }

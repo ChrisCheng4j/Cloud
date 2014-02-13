@@ -11,11 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UserInfo")
+@Table(name = "userinfo")
 public class UserInfo implements Serializable {
 	
 	private static final long serialVersionUID = -6199564308715297081L;
-
+	
+	public UserInfo() {
+		
+	}
+	
+	public UserInfo(String name, String email, String tel, String pwd, String nickname) {
+		this.name = name;
+		this.email = email;
+		this.tel = tel;
+		this.pwd = pwd;
+		this.nickname = nickname;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
@@ -35,8 +47,8 @@ public class UserInfo implements Serializable {
 	@Column(name = "Nickname")
 	private String nickname;
 	
-	@Column(name = "Establish", nullable = false)
-	private Date establish;
+	@Column(name = "CreationDate", nullable = false)
+	private Date creationDate = new Date();
 	
 	public Long getId() {
 		return id;
@@ -86,11 +98,11 @@ public class UserInfo implements Serializable {
 		this.nickname = nickname;
 	}
 	
-	public Date getEstablish() {
-		return establish;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 	
-	public void setEstablish(Date establish) {
-		this.establish = establish;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 }
