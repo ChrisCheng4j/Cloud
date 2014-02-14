@@ -38,6 +38,16 @@ public class ParameterUtils {
 		}
 	}
 	
+	public static void checkAllEmpty(Object... params) {
+		for (Object param : params) {
+			if (!isEmpty(param)) {
+				return ;
+			}
+		}
+		
+		throw new BizException(ErrMessage.INVALID_ARGUMENT_CODE, ErrMessage.INVALID_ARGUMENT);
+	}
+	
 	public static boolean isEmpty(Object o) {
 		if (o == null) {
 			return true;

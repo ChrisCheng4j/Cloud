@@ -1,5 +1,6 @@
 package com.mic.dao.impl;
 
+import java.math.BigInteger;
 import java.sql.SQLException;
 
 import org.hibernate.HibernateException;
@@ -16,16 +17,16 @@ public class UserInfoDaoImpl extends BaseDaoImpl<UserInfo, Long> implements User
 
  	public int getUserInfoNum(final String name, final String email, final String tel) {
 		
-		final String sql = "from UserInfo where Name=? or Email=? or Tel=?";
+		final String sql = "select count(*) from userinfo where Name=? or Email=? or Tel=?";
 		
 		return  (Integer) getHibernateTemplate().execute(new HibernateCallback<Object>() {
 
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 
-				Query query = session.createQuery(sql);
+				Query query = session.createSQLQuery(sql);
 				query.setString(0, name).setString(1, email).setString(2, tel);
 				
-				return query.list().size();
+				return ((BigInteger)query.uniqueResult()).intValue();
 			}	
 		});
 	}

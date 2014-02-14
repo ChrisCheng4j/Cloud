@@ -10,22 +10,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "userinfo")
 public class UserInfo implements Serializable {
-	
-	private static final long serialVersionUID = -6199564308715297081L;
 	
 	public UserInfo() {
 		
 	}
 	
-	public UserInfo(String name, String email, String tel, String pwd, String nickname) {
+	public UserInfo(String name, String email, String tel, String pwd, String nickname, Long diskUsed) {
 		this.name = name;
 		this.email = email;
 		this.tel = tel;
 		this.pwd = pwd;
 		this.nickname = nickname;
+		this.diskUsed = diskUsed;
 	}
 	
 	@Id
@@ -47,6 +47,12 @@ public class UserInfo implements Serializable {
 	@Column(name = "Nickname")
 	private String nickname;
 	
+	@Column(name = "DiskUsed", nullable = false)
+	private Long diskUsed;
+	
+	@Column(name = "DiskQuota", nullable = false)
+	private Long diskQuota = Long.MAX_VALUE;
+
 	@Column(name = "CreationDate", nullable = false)
 	private Date creationDate = new Date();
 	
@@ -96,6 +102,22 @@ public class UserInfo implements Serializable {
 	
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	public Long getDiskUsed() {
+		return diskUsed;
+	}
+
+	public void setDiskUsed(Long diskUsed) {
+		this.diskUsed = diskUsed;
+	}
+
+	public Long getDiskQuota() {
+		return diskQuota;
+	}
+
+	public void setDiskQuota(Long diskQuota) {
+		this.diskQuota = diskQuota;
 	}
 	
 	public Date getCreationDate() {
