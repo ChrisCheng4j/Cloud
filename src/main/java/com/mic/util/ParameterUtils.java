@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.apache.commons.validator.EmailValidator;
 
 import com.mic.exception.BizException;
-import com.mic.exception.ErrMessage;
+import com.mic.exception.ErrorMessage;
 
 /**
  * Check Format of Parameters
@@ -17,24 +17,23 @@ public class ParameterUtils {
 	public static void checkEmail(String email) {
 		checkEmpty(email);
 		if (!EmailValidator.getInstance().isValid(email)) {
-			throw new BizException(ErrMessage.INVALID_EMAIL_CODE, ErrMessage.INVALID_EMAIL);
+			throw new BizException(ErrorMessage.INVALID_EMAIL_CODE, ErrorMessage.INVALID_EMAIL);
 		}
 	}
 	
 	public static void checkPhoneNum(String tel) {
 		checkEmpty(tel);
 		if (!TelephoneValidator.isValid(tel)) {
-			throw new BizException(ErrMessage.INVALID_PHONENUM_CODE, ErrMessage.INVALID_PHONENUM);
+			throw new BizException(ErrorMessage.INVALID_PHONENUM_CODE, ErrorMessage.INVALID_PHONENUM);
 		}
 	}
 	
 	/**
-	 * Check not Null
-	 * @param o
+	 * Check NOT Null Including Parameters & Upload
 	 */
 	public static void checkEmpty(Object o) {
 		if (isEmpty(o)) {
-			throw new BizException(ErrMessage.INVALID_ARGUMENT_CODE, ErrMessage.INVALID_ARGUMENT);
+			throw new BizException(ErrorMessage.INVALID_ARGUMENT_CODE, ErrorMessage.INVALID_ARGUMENT);
 		}
 	}
 	
@@ -45,7 +44,13 @@ public class ParameterUtils {
 			}
 		}
 		
-		throw new BizException(ErrMessage.INVALID_ARGUMENT_CODE, ErrMessage.INVALID_ARGUMENT);
+		throw new BizException(ErrorMessage.INVALID_ARGUMENT_CODE, ErrorMessage.INVALID_ARGUMENT);
+	}
+	
+	public static void checkUploadEmpty(Object o) {
+		if (isEmpty(o)) {
+			throw new BizException(ErrorMessage.UPLOAD_NULL_CODE, ErrorMessage.UPLOAD_NULL);
+		}
 	}
 	
 	public static boolean isEmpty(Object o) {

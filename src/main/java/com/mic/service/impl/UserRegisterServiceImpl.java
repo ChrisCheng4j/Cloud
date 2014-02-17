@@ -4,11 +4,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.mic.dao.UserAlbumDao;
+import com.mic.dao.AlbumDao;
 import com.mic.dao.UserInfoDao;
 import com.mic.exception.BizException;
-import com.mic.exception.ErrMessage;
-import com.mic.model.UserAlbum;
+import com.mic.exception.ErrorMessage;
+import com.mic.model.Album;
 import com.mic.model.UserInfo;
 import com.mic.service.UserRegisterService;
 import com.mic.util.EncryptUtil;
@@ -29,7 +29,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 	private UserInfoDao userInfoDao;
 	
 	@Resource
-	private UserAlbumDao userAlbumDao;
+	private AlbumDao userAlbumDao;
 	
 	/**
 	 * Send an email if email is not null
@@ -71,7 +71,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 		int num = userInfoDao.getUserInfoNum(name, email, tel);
 		
 		if (num != 0) {
-			throw new BizException(ErrMessage.Repeated_Registration_CODE, ErrMessage.Repeated_Registration);
+			throw new BizException(ErrorMessage.Repeated_Registration_CODE, ErrorMessage.Repeated_Registration);
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class UserRegisterServiceImpl implements UserRegisterService {
 	 */
 	public void createDefaultAlbum(Long userId) {
 		
-		UserAlbum userAlbum = new UserAlbum(userId, Global.DEFAULT_ALBUM_NAME, Global.DEFAULT_ALBUM_CLASSIFICATION, "Public");
+		Album userAlbum = new Album(userId, Global.DEFAULT_ALBUM_NAME, Global.DEFAULT_ALBUM_CLASSIFICATION, "Public");
 		userAlbum.setUpdateDate(userAlbum.getCreationDate());
 		
 		userAlbumDao.save(userAlbum);

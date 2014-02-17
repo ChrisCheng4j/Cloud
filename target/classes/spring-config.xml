@@ -15,11 +15,6 @@
     <!-- 引入属性文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     
-    <!-- 自动包扫描 -->
-    <context:component-scan base-package="com.mic.controller,com.mic.service,com.mic.dao">
-        
-    </context:component-scan>
-    
     <!-- Configure DataSource -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${database.url}" />

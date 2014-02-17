@@ -12,14 +12,14 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "useralbum")
-public class UserAlbum implements Serializable {
+@Table(name = "album")
+public class Album implements Serializable {
 	
-	public UserAlbum() {
+	public Album() {
 		
 	}
 	
-	public UserAlbum(Long userId, String name, String classification, String status) {
+	public Album(Long userId, String name, String classification, String status) {
 		this.userId = userId;
 		this.name = name;
 		this.classification = classification;
@@ -45,10 +45,10 @@ public class UserAlbum implements Serializable {
 	@Column(name = "CreationDate", nullable = false)
 	private Date creationDate = new Date();
 	
-	@Column(name = "updateDate", nullable = false)
+	@Column(name = "UpdateDate", nullable = false)
 	private Date updateDate;
 	
-	@Column(name = "lastUpdate")
+	@Column(name = "LastUpdate")
 	private Date lastUpdate;
 	
 	public Long getId() {
